@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Drupal Camp 16 - React</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="bootstrap/cover.css" rel="stylesheet">
+
+
+
+
+    <script src="react/build/react.js"></script>
+    <script src="react/build/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+    
+
+
+    <script type="text/babel">
+   
+      var APP = React.createClass({
+        propTypes:{
+            country:  React.PropTypes.string.isRequired,
+            year:     React.PropTypes.number
+        },
+        getDefaultProps:function() {
+            return{
+                    year: 1969,
+                    country: 'No country'
+                  }
+
+        },
+        getInitialState: function(){
+          return{
+                  comment: ''
+                }
+
+        },
+        updateComment: function(e){
+          this.setState({ comment: e.target.value });
+        },
+        render: function() {
+          
+          return (
+                    <div>
+                      <h2>Hola Drupal Camp {this.props.year}</h2>
+                      <h4>{this.props.country}</h4>
+                      <APPUpdater comment={this.state.comment} updateCallback={this.updateComment} />
+                    </div>
+                  );
+        }
+      });
+
+      var APPUpdater = React.createClass({
+          render: function(){
+            return(
+                <div>
+                  <input type="text" onChange={this.props.updateCallback} placeholder="Enter comment"/>
+                  <br/>
+                  <span>{this.props.comment}</span>
+                </div>
+            )  
+
+          }
+      });
+
+
+      ReactDOM.render(<APP  year={2017} country="Centroamerica"/>,  document.getElementById('container') );
+      
+      ReactDOM.render(<APP  year={2016} />,  document.getElementById('container-2') );
+
+      ReactDOM.render(<APP />,  document.getElementById('container-3') );
+    
+    </script>
+
+
+  </head>
+  <body>
+
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="inner cover">
+
+            <div class="masthead clearfix">
+              <div class="inner">
+                <h3 class="masthead-brand">#DrupalCR16</h3>
+                <nav>
+                  <ul class="nav masthead-nav">
+                    <li><a href="01-HolaDrupalCamp.html">Hello</a></li>
+                    <li><a href="02-Propiedades.html">Properties I</a></li>
+                    <li><a href="03-Propiedades.html">Properties II</a></li>
+                    <li><a href="04-Composicion.html">Components</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+            <h1 class="cover-heading">Drupal Camp 16 - React Examples</h1>
+
+            
+            <div id="container"></div>
+            <div id="container-2"></div>
+            <div id="container-3"></div>
+  
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
